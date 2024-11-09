@@ -1,20 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { InicioComponent } from './inicio/inicio.component';
+import { UbicarnosComponent } from './ubicarnos/ubicarnos.component';  // Ruta correcta
+import { ContactanosComponent } from './contactanos/contactanos.component';  // Ruta correcta
 
-// Asegúrate de que las rutas sean correctas según la ubicación de los componentes
-import { HomeComponent } from './components/home/home.component';  // Ruta corregida
-import { UbicacionComponent } from './components/ubicacion/ubicacion.component';  // Ruta corregida
-import { ContactoComponent } from './components/contacto/contacto.component';  // Ruta corregida
-
-// Define las rutas
 const routes: Routes = [
-  { path: '', component: HomeComponent },  // Ruta principal - Home
-  { path: 'ubicacion', component: UbicacionComponent },  // Ruta para "Ubícanos"
-  { path: 'contacto', component: ContactoComponent },  // Ruta para "Contáctanos"
+  { path: '', component: InicioComponent },
+  { path: 'ubicarnos', component: UbicarnosComponent },  // Ruta para "Ubicarnos"
+  { path: 'contactanos', component: ContactanosComponent },  // Ruta para "Contáctanos"
+  { path: '**', redirectTo: '' }  // Redirige a la página de inicio en caso de ruta incorrecta
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],  // Configura el enrutador
-  exports: [RouterModule]  // Exporta el RouterModule para que las rutas puedan ser utilizadas en otros módulos
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule { }

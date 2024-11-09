@@ -21,23 +21,28 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/nombre_proyecto",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "main": "src/main.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
+              },
+              {
+                "glob": "favicon.ico",
+                "input": "src",
+                "output": "/"
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -67,12 +72,15 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nombre_proyecto:build"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "nombre_proyecto:build:production"
+              "browserTarget": "nombre_proyecto:build:production"
             },
             "development": {
-              "buildTarget": "nombre_proyecto:build:development"
+              "browserTarget": "nombre_proyecto:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -91,16 +99,22 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "src/assets",
+                "output": "/assets"
               }
             ],
             "styles": [
-              "src/styles.css"
-            ],
+              "src/styles.css" ,
+                 "node_modules/bootstrap/dist/css/bootstrap.min.css"
+                ],
+              
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
